@@ -30,5 +30,3 @@ This repository contains two versions of an **ATM Simulator**:
 2. Run `index.html` in your browser.  
 
 ---
-
-## 📂 Project Structure
