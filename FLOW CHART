@@ -1,0 +1,35 @@
+                  ┌───────────────────┐
+                  │   Start Program   │
+                  └─────────┬─────────┘
+                            │
+                            ▼
+                  ┌────────────────────┐
+                  │  Enter PIN (input) │
+                  └─────────┬──────────┘
+                            │
+          ┌─────────────────┴──────────────────┐
+          │ PIN Correct                        │ PIN Wrong
+          ▼                                    ▼
+ ┌────────────────────┐             ┌────────────────────────┐
+ │ Display ATM Menu   │             │ Print "Invalid PIN"    │
+ │ (1–5 options)      │             │ Exit Program           │
+ └─────────┬──────────┘             └────────────────────────┘
+           │
+           ▼
+ ┌───────────────────────────────────────────────┐
+ │ User selects option:                          │
+ │ 1. Check Balance                              │
+ │ 2. Deposit Money                              │
+ │ 3. Withdraw Money                             │
+ │ 4. Change PIN                                 │
+ │ 5. Exit                                       │
+ └─────────┬─────────────────────────────────────┘
+           │
+           ▼
+   ┌───────────────────────────────────────────────┐
+   │ Option 1: Print current balance               │
+   │ Option 2: Ask deposit amount → Add to balance │
+   │ Option 3: Ask withdraw amount → Check funds   │
+   │ Option 4: Ask new PIN → Update stored PIN     │
+   │ Option 5: Print "Thank you" → End program     │
+   └───────────────────────────────────────────────┘

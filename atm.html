@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ATM Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .atm {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    input, button {
+      margin: 8px 0;
+      padding: 10px;
+      width: 90%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .output {
+      margin-top: 15px;
+      min-height: 30px;
+      padding: 10px;
+      border-radius: 6px;
+      background: #ecf0f1;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div class="atm">
+    <h2>ATM Simulator</h2>
+
+    <!-- PIN section -->
+    <div id="login-section">
+      <input type="password" id="pin-input" placeholder="Enter PIN">
+      <button onclick="login()">Login</button>
+      <div class="output" id="login-output"></div>
+    </div>
+
+    <!-- Menu section -->
+    <div id="menu-section" style="display:none;">
+      <button onclick="checkBalance()">1. Check Balance</button>
+      <button onclick="deposit()">2. Deposit</button>
+      <button onclick="withdraw()">3. Withdraw</button>
+      <button onclick="changePin()">4. Change PIN</button>
+      <button onclick="exitATM()">5. Exit</button>
+      <div class="output" id="menu-output"></div>
+    </div>
+  </div>
+
+  <script>
+    // ATM variables
+    let balance = 1000;
+    let pin = 1234;
+    let loggedIn = false;
+
+    // Login function
+    function login() {
+      const enteredPin = document.getElementById("pin-input").value;
+      if (parseInt(enteredPin) === pin) {
+        loggedIn = true;
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("menu-section").style.display = "block";
+      } else {
+        document.getElementById("login-output").innerText = "Invalid PIN!";
+      }
+    }
+
+    // Menu functions
+    function checkBalance() {
+      document.getElementById("menu-output").innerText = "Balance: ₹" + balance;
+    }
+
+    function deposit() {
+      let amount = prompt("Enter deposit amount:");
+      amount = parseInt(amount);
+      if (amount > 0) {
+        balance += amount;
+        document.getElementById("menu-output").innerText = "Deposited ₹" + amount;
+      } else {
+        document.getElementById("menu-output").innerText = "Invalid amount!";
+      }
+    }
+
+    function withdraw() {
+      let amount = prompt("Enter withdraw amount:");
+      amount = parseInt(amount);
+      if (amount > 0 && amount <= balance) {
+        balance -= amount;
+        document.getElementById("menu-output").innerText = "Withdrawn ₹" + amount;
+      } else if (amount > balance) {
+        document.getElementById("menu-output").innerText = "Insufficient balance!";
+      } else {
+        document.getElementById("menu-output").innerText = "Invalid amount!";
+      }
+    }
+
+    function changePin() {
+      let newPin = prompt("Enter new PIN:");
+      if (newPin && newPin.length >= 4) {
+        pin = parseInt(newPin);
+        document.getElementById("menu-output").innerText = "PIN changed successfully!";
+      } else {
+        document.getElementById("menu-output").innerText = "Invalid PIN format!";
+      }
+    }
+
+    function exitATM() {
+      document.getElementById("menu-section").style.display = "none";
+      document.getElementById("login-section").style.display = "block";
+      document.getElementById("login-output").innerText = "Session Ended. Please login again.";
+    }
+  </script>
+</body>
+</html>
